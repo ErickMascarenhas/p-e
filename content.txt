@@ -9,7 +9,7 @@ Exemplo:  Uma prova tem 4 questões objetivas com 5 alternativas cada, qual a pr
 → dbinom(3, 4, 1/5)
 
 Distribuição geométrica: determina quantidade de tentativas necessárias para se obter o primeiro sucesso em uma sequência de ensaios de Bernoulli
-> dgeom(número da tentativa em que deseja o primeiro sucesso, probabilidade do teste)
+> dgeom(número da tentativa em que deseja o primeiro sucesso - 1, probabilidade do teste)
 Exemplo: Qual a probabilidade de a primeira "cara" sair no 4º lançamento de uma moeda?
 → dgeom(3, 0.5)
 
