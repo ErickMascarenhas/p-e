@@ -1,6 +1,2 @@
--.-. ..-
-bom dia
-SIM
-E esse TDAH?
-Simbora
 ? #função da distribuição vai ter dar um help de como funciona -> ? pnorm
+^^^ Perfeito.
