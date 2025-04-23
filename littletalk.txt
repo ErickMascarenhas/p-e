@@ -6,3 +6,4 @@ só pq eu tava escrevendo 🤓
 o que é esse XX
 é a soma dos digitos do seu numero de matricula
 Função de probabilidade é uma função que tenho que fazer no R ou ela já existe?
+Eu fiz no excalidraw, tem sobre a função no primeiro slide
