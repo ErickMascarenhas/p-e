@@ -10,3 +10,6 @@ Eu fiz no excalidraw, tem sobre a função no primeiro slide
 Como que faz a do elevador TwT, acho que consegui
 conseguiu de ctz?
 Acho que sim, faltou uma alternativa e desisti
+
+foi essa: Qual é o peso total máximo permitido para garantir que a probabilidade de exceder esse peso seja apenas 10%?
+?
