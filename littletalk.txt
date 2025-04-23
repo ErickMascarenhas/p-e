@@ -1,3 +1,4 @@
 ? #função da distribuição vai ter dar um help de como funciona -> ? pnorm
 ^^^ Perfeito.
 como passa minha internet pro computador 
+consegui 
