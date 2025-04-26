@@ -1,0 +1,67 @@
+#include <iostream>
+#include <queue>
+#include <vector>
+#include <tuple>
+
+#define infinito 1e9 // 1 * 10^9
+
+using namespace std;
+
+void dijkstra(vector<vector<tuple<int, int>>>& adj, int s){
+
+    vector<int> dist(adj.size());
+    vector<int> pre(adj.size());
+
+    for (int i = 0; i < adj.size(); ++i){
+        dist[i] = infinito;
+        pre[i] = -1;
+    }
+    dist[s] = 0;
+    priority_queue<tuple<int, int>, vector<tuple<int,int>>, greater<int>> H;
+
+    for (int i = 0; i < adj.size(); ++i){
+        H.push(make_tuple(i, dist[i]));
+    }
+
+    while(!H.empty()){
+        
+        tuple<int, int> atual = H.top();
+        H.pop();
+
+        for (int i = get<1>atual; i < adj[i].size(); i++){
+
+            if (dist[i] > dist[get<1>(atual)] + get<0>(i)){ // em 1 tem o vertice e em 0 tem o peso
+                
+                dist[i] = dist[get<1>(atual)] + get<0>(i);
+                pre[i] = get<1>(atual);
+                ajustar_prioridadr(i, dist[i]);
+            }
+        }
+    }
+
+    for (int i = 0; i < dist.size(); ++i)
+}
+
+int main(int argc, char *argv[]){
+
+    int n, m; // quantidade de vertices e arestas
+    cin >> n >> m;
+
+    vector<vector<tuple<int, int>>> adj(n); // criou um vetor de n vetores de tuplas inicialmente vazias
+    //[[(), (), ()...],[(), (), ()...],[()...],[()...]...], na verdade as tuplas não existem, mas está reservado para tuplas
+
+    int vertice, vizinho, peso;
+
+    for (int i = 0; i < m; ++i){
+        cin >> vertice >> vizinho >> peso;
+        adj[vertice].push_back(make_tuple(peso, vizinho));
+        adj[vizinho].push_back(make_tuple(peso, vertice));
+
+        // botar o peso no meio que ai fica -> vertice - peso - vertice
+    }
+
+    cin >> n // vertice de comeco, temporario pois ele deve vir no -i senao coloca como 0
+    dijkstra(adj, n);
+
+    return 0;
+}
