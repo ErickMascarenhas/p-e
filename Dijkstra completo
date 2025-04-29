@@ -4,18 +4,17 @@
 #include <vector>
 #include <tuple>
 #include <cstring>
+
 #define infinito 1e9 // 1 * 10^9
+
 using namespace std;
 
 void helpfunction(){
-    cout << "Algoritmo de Caminhos Minimos: ./dijkstra -f <arquivo de entrada> [-o <arquivo de saida>] [-i <vertice inicial>] [-h]" << endl << endl;
+    cout << endl << "Algoritmo de Caminhos Minimos: ./dijkstra -f <arquivo de entrada> [-o <arquivo de saida>] [-i <vertice inicial>] [-h]" << endl << endl;
     cout << "-h\t\t : mostra o help" << endl;
     cout << "-o <arquivo>\t : redireciona a saida para o ''arquivo''" << endl;
     cout << "-f <arquivo>\t : indica o ''arquivo'' que contem o grafo de entrada" << endl;
-    cout << "-i <vertice>\t : vertice inicial (valor, nao indice)" << endl << endl;
-    cout << "Pressione enter para voltar/continuar" << endl;
-    cin.get();
-    system("cls");
+    cout << "-i <vertice>\t : indice do vertice inicial" << endl << endl;
 }
 
 void dijkstra(vector<vector<tuple<double, int>>> &adj, int s, ostream& saida){
@@ -45,13 +44,14 @@ void dijkstra(vector<vector<tuple<double, int>>> &adj, int s, ostream& saida){
             }
         }
     }
+
     for (unsigned int i = 0; i < dist.size(); ++i) saida << i + 1 << ":" << dist[i] << " ";
 }
 
 int main(int argc, char *argv[]){
     string inputfile;
     string outputfile;
-    int vertexstart = 0; // vertice 1 por padrao (indice 0 no vetor)
+    int indexstart = 0; // vertice 1 por padrao (indice 0 no vetor)
     for (int i = 1; i < argc; ++i){
         if (strcmp(argv[i], "-h") == 0){ // se encontrar -h, executa helpfunction
             helpfunction();
@@ -59,7 +59,7 @@ int main(int argc, char *argv[]){
         }
         else if (strcmp(argv[i], "-f") == 0 && i + 1 < argc) inputfile = argv[++i];
         else if (strcmp(argv[i], "-o") == 0 && i + 1 < argc) outputfile = argv[++i];
-        else if (strcmp(argv[i], "-i") == 0 && i + 1 < argc) vertexstart = atoi(argv[++i]) - 1; // ajusta para iniciar em 0
+        else if (strcmp(argv[i], "-i") == 0 && i + 1 < argc) indexstart = atoi(argv[++i]);
     }
 
     if (inputfile.empty()){
@@ -85,14 +85,14 @@ int main(int argc, char *argv[]){
     }
     input.close();
 
-    if (outputfile.empty()) dijkstra(adj, vertexstart, cout); // se n tiver arquivo de saida, bota no terminal
+    if (outputfile.empty()) dijkstra(adj, indexstart, cout); // se n tiver arquivo de saida, bota no terminal
     else{ // se tiver, escreve tudo no output
         ofstream output(outputfile);
         if (!output.is_open()){
             cerr << "Erro ao abrir o arquivo de saida" << endl;
             return 1;
         }
-        dijkstra(adj, vertexstart, output);
+        dijkstra(adj, indexstart, output);
         output.close();
     }
 
