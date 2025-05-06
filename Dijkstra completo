@@ -10,7 +10,7 @@
 using namespace std;
 
 void helpfunction(){
-    cout << endl << "Algoritmo de Caminhos Minimos: ./dijkstra -f <arquivo de entrada> [-o <arquivo de saida>] [-i <vertice inicial>] [-h]" << endl << endl;
+    cout << endl << "Algoritmo de Caminhos Minimos: .\\dijkstra -f <arquivo de entrada> [-o <arquivo de saida>] [-i <vertice inicial>] [-h]" << endl << endl;
     cout << "-h\t\t : mostra o help" << endl;
     cout << "-o <arquivo>\t : redireciona a saida para o ''arquivo''" << endl;
     cout << "-f <arquivo>\t : indica o ''arquivo'' que contem o grafo de entrada" << endl;
@@ -33,7 +33,7 @@ void dijkstra(vector<vector<tuple<double, int>>> &adj, int s, ostream& saida){
         //separa os valores para facilitar o acesso depois
         double distancia = get<0>(atual);
         int vertice = get<1>(atual);
-        if (distancia > dist[vertice]) continue; // se ja achou um caminho menor, ignora
+        if (distancia < dist[vertice]) continue; // se ja achou um caminho menor, ignora
         for (tuple<double, int> vizinho : adj[vertice]){  // vai iterar sobre todos os vizinho dos vertice
             double peso = get<0>(vizinho);
             int indice_v = get<1>(vizinho);
@@ -63,7 +63,7 @@ int main(int argc, char *argv[]){
     }
 
     if (inputfile.empty()){
-        cerr << "Arquivo de entrada ausente, confira usando ./dijkstra -h" << endl;
+        cerr << "Arquivo de entrada ausente, confira usando .\\dijkstra -h" << endl;
         return 1;
     }
     ifstream input(inputfile);
