@@ -47,7 +47,7 @@ void bellman(vector<vector<tuple<double, int>>> &adj, int s, ostream& saida){
             int indice_vizinho = get<1>(vizinho);
 
             if (dist[i] + peso < dist[indice_vizinho]){
-                cout << "O grafo possui ciclo negativo, entao nao e possível calcular o menor caminho entre os vertices" << endl;
+                cout << "O grafo possui ciclo negativo, entao nao e possivel calcular o menor caminho entre os vertices" << endl;
                 return;
             }
         }
