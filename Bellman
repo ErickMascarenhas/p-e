@@ -61,7 +61,7 @@ int main(int argc, char *argv[]){
 
     string inputfile;
     string outputfile;
-    int indexstart = 0, direcionado = 0; //vertice 1 por padrao (indice 0 no vetor)
+    int indexstart = 0; //vertice 1 por padrao (indice 0 no vetor)
 
     for (int i = 1; i < argc; ++i){
         if (strcmp(argv[i], "-h") == 0) {
@@ -71,7 +71,6 @@ int main(int argc, char *argv[]){
         else if (strcmp(argv[i], "-f") == 0 && i + 1 < argc) inputfile = argv[++i];
         else if (strcmp(argv[i],"-o") == 0 && i + 1 < argc) outputfile = argv[++i];
         else if (strcmp(argv[i], "-i") == 0 && i + 1 < argc) indexstart = atoi(argv[++i]);
-        else if (strcmp(argv[i], "-d") == 0) direcionado = 1;
     }
 
 
@@ -95,7 +94,6 @@ int main(int argc, char *argv[]){
     for (int i = 0; i < m; ++i){
         input >> vertice >> vizinho >> peso;
         adj[vertice - 1].push_back(make_tuple(peso, vizinho -1));
-        if (!direcionado) adj[vizinho - 1].push_back(make_tuple(peso, vertice -1));
     }
     input.close();
 
