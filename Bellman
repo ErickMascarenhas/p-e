@@ -14,6 +14,7 @@ void helpfunction(){
     cout << "-o <arquivo>\t : redireciona a saida para o arquivo informado" << endl;
     cout << "-f <arquivo>\t : indica o ''arquivo'' que contem o grafo de entrada" << endl;
     cout << "-i <vertice>\t : indice do vertice inicial (de 0 até n -1)" << endl;
+    cout << "-d\t\t caso o grafo seja direcionado" << endl;
     cout << "No arquivo de entrada coloque os numeros dos vertices, vizinho, peso" << endl;
     cout << "No arquivo os vertices devem ser colocados como o seu numero (de 1 até n)" << endl;
 }
@@ -25,17 +26,16 @@ void bellman(vector<vector<tuple<double, int>>> &adj, int s, ostream& saida){
     for (unsigned int i = 0; i < dist.size(); ++i) dist[i] = infinito; //define tudo como "infinito"
     dist[s] = 0;
 
-    for (unsigned int i = 0; i < dist.size(); ++i){
-        for (tuple <double, int> vizinho : adj[i]){
-            double peso = get<0>(vizinho);
-            int indice_vizinho = get<1>(vizinho);
+    for (unsigned int j = 1; j < dist.size(); ++j){
+        for (unsigned int i = 0; i < dist.size(); ++i){
+            for (tuple <double, int> vizinho : adj[i]){
+                double peso = get<0>(vizinho);
+                int indice_vizinho = get<1>(vizinho);
 
-            /* se eh possivel chegar no vizinho, vindo de i com um custo menor do que o que ja foi calculado, então muda
-                d[l, k] = min{d[l -1, k], min{d[l -1, i] + w(i, k)}}
-            */
-            if (dist[i] + peso < dist[indice_vizinho]){
-                dist[indice_vizinho] = dist[i] + peso;
-                cout << "mudei o valor" << endl;
+                /* se eh possivel chegar no vizinho, vindo de i com um custo menor do que o que ja foi calculado, então muda
+                    d[l, k] = min{d[l -1, k], min{d[l -1, i] + w(i, k)}}
+                */
+                if (dist[i] + peso < dist[indice_vizinho]) dist[indice_vizinho] = dist[i] + peso;
             }
         }
     }
@@ -61,7 +61,7 @@ int main(int argc, char *argv[]){
 
     string inputfile;
     string outputfile;
-    int indexstart = 0; //vertice 1 por padrao (indice 0 no vetor)
+    int indexstart = 0, direcionado = 0; //vertice 1 por padrao (indice 0 no vetor)
 
     for (int i = 1; i < argc; ++i){
         if (strcmp(argv[i], "-h") == 0) {
@@ -71,6 +71,7 @@ int main(int argc, char *argv[]){
         else if (strcmp(argv[i], "-f") == 0 && i + 1 < argc) inputfile = argv[++i];
         else if (strcmp(argv[i],"-o") == 0 && i + 1 < argc) outputfile = argv[++i];
         else if (strcmp(argv[i], "-i") == 0 && i + 1 < argc) indexstart = atoi(argv[++i]);
+        else if (strcmp(argv[i], "-d") == 0 && i + 1 < argc) direcionado = 1;
     }
 
 
@@ -94,7 +95,7 @@ int main(int argc, char *argv[]){
     for (int i = 0; i < m; ++i){
         input >> vertice >> vizinho >> peso;
         adj[vertice - 1].push_back(make_tuple(peso, vizinho -1));
-        //adj[vizinho - 1].push_back(make_tuple(peso, vertice -1));
+        if (!direcionado) adj[vizinho - 1].push_back(make_tuple(peso, vertice -1));
     }
     input.close();
 
