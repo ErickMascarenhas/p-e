@@ -14,7 +14,7 @@ void helpfunction(){
     cout << "-o <arquivo>\t : redireciona a saida para o arquivo informado" << endl;
     cout << "-f <arquivo>\t : indica o ''arquivo'' que contem o grafo de entrada" << endl;
     cout << "-i <vertice>\t : indice do vertice inicial (de 0 até n -1)" << endl;
-    cout << "-d\t\t caso o grafo seja direcionado" << endl;
+    cout << "-d\t\t : caso o grafo seja direcionado" << endl;
     cout << "No arquivo de entrada coloque os numeros dos vertices, vizinho, peso" << endl;
     cout << "No arquivo os vertices devem ser colocados como o seu numero (de 1 até n)" << endl;
 }
