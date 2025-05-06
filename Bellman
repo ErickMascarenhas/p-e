@@ -71,7 +71,7 @@ int main(int argc, char *argv[]){
         else if (strcmp(argv[i], "-f") == 0 && i + 1 < argc) inputfile = argv[++i];
         else if (strcmp(argv[i],"-o") == 0 && i + 1 < argc) outputfile = argv[++i];
         else if (strcmp(argv[i], "-i") == 0 && i + 1 < argc) indexstart = atoi(argv[++i]);
-        else if (strcmp(argv[i], "-d") == 0 && i + 1 < argc) direcionado = 1;
+        else if (strcmp(argv[i], "-d") == 0) direcionado = 1;
     }
 
 
