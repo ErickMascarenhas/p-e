@@ -13,6 +13,7 @@ void helpfunction(){
     cout << "-o <arquivo>\t : redireciona a saida para o ''arquivo''" << endl;
     cout << "-f <arquivo>\t : indica o ''arquivo'' que contem o grafo de entrada" << endl;
     cout << "-i <vertice>\t : indice do vertice inicial" << endl << endl;
+    cout << "Esse algoritmo tratara o grafo como nao direcionado, logo, o resultado pode diferir do Bellman" << endl;
 }
 
 void dijkstra(vector<vector<tuple<double, int>>> &adj, int s, ostream& saida){
