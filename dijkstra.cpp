@@ -36,11 +36,11 @@ void dijkstra(vector<vector<tuple<double, int>>> &adj, int s, ostream& saida){
         if (distancia < dist[vertice]) continue; // se ja achou um caminho menor, ignora
         for (tuple<double, int> vizinho : adj[vertice]){  // vai iterar sobre todos os vizinho dos vertice
             double peso = get<0>(vizinho);
-            int indice_v = get<1>(vizinho);
-            if (dist[indice_v] > dist[vertice] + peso){
-                dist[indice_v] = dist[vertice] + peso; // atualiza a distancia
-                pre[indice_v] = vertice; // diz por onde veio ("quem eh pai daquele vertice")
-                H.push({dist[indice_v], indice_v}); // coloca um novo elemento na heap já se preocupando com a prioridade
+            int indicev = get<1>(vizinho);
+            if (dist[indicev] > dist[vertice] + peso){
+                dist[indicev] = dist[vertice] + peso; // atualiza a distancia
+                pre[indicev] = vertice; // diz por onde veio ("quem eh pai daquele vertice")
+                H.push({dist[indicev], indicev}); // coloca um novo elemento na heap já se preocupando com a prioridade
             }
         }
     }
