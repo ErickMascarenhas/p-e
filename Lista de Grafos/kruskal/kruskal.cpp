@@ -21,8 +21,27 @@ struct aresta{ // assim eh mais facil de tratar, porque ele percorre arestas ao 
 };
 
 // fiz com bubblesort, mas se quiser pode mudar a vontade
-void ordenar(vector<aresta>& arestas){ // precisei ordenar, tava vindo resultados errados (inclusive, ela ordena usando peso como base)
-    for (long long unsigned int i = 0; i < arestas.size() - 1; ++i) for (long long unsigned int j = 0; j < arestas.size() - i - 1; ++j) if (arestas[j].peso > arestas[j + 1].peso) swap(arestas[j], arestas[j + 1]);
+void ordenar(vector<aresta>& arestas, int esquerda, int direita){
+    
+    if(esquerda >= direita) return;
+
+    int i = esquerda, j = esquerda -1;
+    double pivo = arestas[direita].peso;
+
+    while (i < direita){
+        if (arestas[i].peso < pivo){
+            j++;
+            swap(arestas[i], arestas[j]);
+        }
+        i++;
+    }
+
+    j++;
+    arestas[i] = arestas[j];
+    arestas[j].peso = pivo;
+
+    ordenar(arestas, esquerda, j - 1);
+    ordenar(arestas, j + 1, direita);
 }
 
 int raiz(int vertice, vector<int>& pais){ // pegar o ancestral de um descendente proprio
@@ -80,7 +99,7 @@ int main(int argc, char *argv[]){
     }
     input.close();
 
-    ordenar(arestas); // por causa desse ordenar, o algoritmo pode demorar pra rodar, mas ele eh necessario
+    ordenar(arestas, 0, arestas.size() - 1); // por causa desse ordenar, o algoritmo pode demorar pra rodar, mas ele eh necessario
     double custo = 0; // custo total da arvore geradora minima comeca em 0
     vector<aresta> arvore; // arvore geradora minima eh um vetor de arestas
     for (aresta& galho : arestas){
@@ -101,7 +120,7 @@ int main(int argc, char *argv[]){
             cerr << "Erro ao abrir o arquivo de saida" << endl;
             return 1;
         }
-        if (show == 1) for (aresta& galho : arvore) output << "(" << galho.vertice + 1 << "," << galho.vizinho + 1 << ") ";
+        if (show == 1) for (aresta& galho : arvore) output << "(" << galho.vertice + 1 << "," << galho.vizinho + 1 << ") " << endl;
         else output << custo << endl; // se nao for pra mostrar solucao, mostra so o custo
         output.close();
     }
