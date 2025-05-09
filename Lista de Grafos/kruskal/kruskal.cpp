@@ -20,14 +20,12 @@ struct aresta{ // assim eh mais facil de tratar, porque ele percorre arestas ao 
     double peso;
 };
 
-// fiz com bubblesort, mas se quiser pode mudar a vontade
-void ordenar(vector<aresta>& arestas, int esquerda, int direita){
-    
+void ordenar(vector<aresta>& arestas, int esquerda, int direita){ // quick sort
     if(esquerda >= direita) return;
-
+    
     int i = esquerda, j = esquerda -1;
     double pivo = arestas[direita].peso;
-
+    
     while (i < direita){
         if (arestas[i].peso < pivo){
             j++;
@@ -35,7 +33,6 @@ void ordenar(vector<aresta>& arestas, int esquerda, int direita){
         }
         i++;
     }
-
     j++;
     arestas[i] = arestas[j];
     arestas[j].peso = pivo;
