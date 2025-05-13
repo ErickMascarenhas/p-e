@@ -5,16 +5,17 @@ Descrição: Jogo multiplayer em Python que roda no terminal, utilizando sockets
 Requisitos:
 -> Python 3 (Obrigatório)
 -> Radmin VPN (Opcional)
+-> Windows ou Linux (Para execução em computadores diferentes)
 
 Instruções de execução para um ou mais clientes no mesmo computador:
-1. Extraia o aqruivo do jogo, de forma que todos os conteúdos do .zip fiquem na mesma pasta.
+1. Tendo baixado os arquivos 'server.py', 'client.py' e 'palavras.txt', coloque-os na mesma pasta.
 2. Execute 'server.py'. Se necessário, use o terminal para acessar a pasta dos conteúdos, e então use o comando "python server.py" no mesmo terminal. 
 3. Execute 'client.py', uma vez para cada cliente desejado. Se necessário, abra novos terminais para cada cliente, acesse a pasta dos conteúdos e use o comando "python client.py".
 4. Pronto, o jogo já está funcionando. Cada cliente deve colocar seu nome de usuário diretamente no terminal antes de participar no jogo.
 -> Recomenda-se que todos os clientes coloquem o nome antes que qualquer um comece a jogar.
 
 Instruções de execução para dois ou mais clientes em computadores diferentes:
-1. Extraia o aqruivo do jogo, de forma que todos os conteúdos do .zip fiquem na mesma pasta.
+1. Tendo baixado os arquivos 'server.py', 'client.py' e 'palavras.txt', coloque-os na mesma pasta.
 2. Certifique-se que todos os computadores estão na mesma rede. Se isso não for possível, utilizar programas externos para tal.
 -> Para testes, foi utilizado o Radmin VPN (https://radmin-vpn.com). Nele, crie uma rede e conecte todos os computadores na mesma rede privada.
 3. Abra 'server.py' e 'client.py' com algum programa para editar texto (Bloco de Notas, Visual Studio Code, etc.).
